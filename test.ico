@@ -6,7 +6,7 @@ const int pirSensor = 8; // choose the input pin (for PIR sensor)
 bool pirState = LOW;
 int val = 0;
 unsigned long currentMillis = 0;
-bool buttonState = false;
+bool buttonState = LOW;
 bool claymoreStatus = false;
 unsigned long previousMillis = 0;
 const long interval = 10000;
@@ -28,6 +28,10 @@ void loop() {
   }
   
   if (claymoreStatus) {
+    if (currentMillis - previousMillis >= interval) {
+      previousMillis = currentMillis;
+      tone(buzzer, 440, 1000);
+    }
     if (val == HIGH) {
       digitalWrite(ledPin, HIGH);
       delay(200);
@@ -40,17 +44,19 @@ void loop() {
       digitalWrite(ledPin, LOW);
       if (pirState == HIGH) {
         Serial.println("Motion ended!");
-        if (currentMillis - previousMillis >= interval) {
-          previousMillis = currentMillis;
-          tone(buzzer, 440, 1000);
-          delay(1500);
-          tone(buzzer, 440, 1000);
-          delay(1500);
-          tone(buzzer, 440, 1000);
-          delay(1500);
-        }
-        pirState = LOW;
+        tone(buzzer, 440, 1000);
+        delay(1500);
+        tone(buzzer, 440, 1000);
+        delay(1500);
+        tone(buzzer, 440, 1000);
+        delay(1500);
+        tone(buzzer, 440, 1000);
+        delay(1500);
+        tone(buzzer, 440, 1000);
+        delay(1500);
+        changeStatus();
       }
+      pirState = LOW;
     }
   }
   
