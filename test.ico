@@ -72,9 +72,9 @@ void changeStatus() {
   } else {
     claymoreStatus = true;
     digitalWrite(ledPin, LOW);
-    emitSound(333);
-    emitSound(333);
-    emitSound(333);
+    emitSound(400);
+    emitSound(400);
+    emitSound(400);
   }
 }
 
