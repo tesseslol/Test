@@ -1,7 +1,7 @@
 const int buttonPin = 2;
 const int ledPin = 12;
 const int buzzer = 7;
-const int pirSensor = 8; // choose the input pin (for PIR sensor)
+const int pirSensor = 8;
 
 bool pirState = LOW;
 int val = 0;
